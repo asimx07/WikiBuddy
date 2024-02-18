@@ -101,5 +101,4 @@ if __name__ == "__main__":
     end_time = time.time()  
     elapsed_time_seconds = end_time - start_time  
     elapsed_time_minutes = elapsed_time_seconds / 60  
-    logging.info(f"Elapsed time: {elapsed_time_minutes:.2f} minutes")  # Log elapsed time in minutes
-
+    logging.info(f"Elapsed time: {elapsed_time_minutes:.2f} minutes")  

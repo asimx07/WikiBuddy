@@ -48,7 +48,9 @@ async def completion(query: Validation, _empty:str):
     try:
         global chat_history
         res = qa_chain.invoke({"question": query})
-      #  chat_history.append((query, res["answer"]))
+        
+        #chat_history.append((query, res["answer"]))
+
         logging.info(f"Processed query: {query}")
         return res["answer"]
     except Exception as e:
@@ -72,9 +74,9 @@ io =  gr.ChatInterface(
      undo_btn="Delete Previous",
      clear_btn="Clear",
      analytics_enabled= True,
-     
-
+     fill_height=True
  )
+
 app = gr.mount_gradio_app(app, io, path="/gradio")
 
 
