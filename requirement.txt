@@ -1,0 +1,9 @@
+python-dotenv
+langchain_openai
+langchain
+gradio
+uvicorn
+pydantic
+faiss-cpu
+fake-useragent
+asyncio
