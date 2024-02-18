@@ -40,7 +40,7 @@ async def health_check():
     return {"status": "Service is up and running!"}
 
 
-@app.post("/openAiChat")
+@app.post("/chat")
 async def completion(query: Validation, _empty:str):
     """
     Endpoint to process user queries and get responses.
@@ -85,23 +85,3 @@ if __name__ == "__main__":
 
 
 
-# SOME FINDINGS: 
-
-# One problem: If the question is not follow up then a new tree starts
-# However since the old info is in chat_history "stand alone question" 
-# sometimes gets generated because it misunderstands the context 
-# One way to solve this is flush the chat_history once conversation is over
-# that's not optimal because the new topic could be related to older topic
-# The other way is to Skip the standalone question generation if the question is
-# not follow up quesiton. 
-# Another Problem: is that includes chat history into request
-#  which gets out of context window if long enough 
-#  to solve both issues one tacky approach could be to flush
-#  memory after 5 requests. This will include long term memory
-#  loss though. 
-# Note ConversationtalRetrievelChain does condense the history 
-# so summarizing the chat history after few queries doesn't work 
-# that efficiently with Langchain. 
-#This doesn't work if I have to use the return_source_document, So I have created my own logic
-#of saving chat history in main.py
-#memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True)

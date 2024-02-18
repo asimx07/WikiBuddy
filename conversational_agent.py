@@ -9,6 +9,8 @@ from langchain_community.vectorstores import FAISS
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from huggingface_hub import hf_hub_download
 from langchain_community.llms import LlamaCpp
+from langchain import PromptTemplate
+
 from langchain.memory import ConversationBufferMemory
 langchain.debug = True 
 from dotenv import load_dotenv
@@ -42,7 +44,9 @@ class ConversationalAgent:
         embedding_model_id = "BAAI/bge-base-en-v1.5"
         embeddings = HuggingFaceEmbeddings(model_name=embedding_model_id)
         logging.info("Loading saved Embeddings.....")
-        embeddings_db = FAISS.load_local("saved-index-faiss", embeddings)
+        index_path = pathlib.Path(__file__).parent / "saved-index-faiss"
+
+        embeddings_db = FAISS.load_local(index_path, embeddings)
         
         custom_retriever = embeddings_db.as_retriever(search_kwargs={"k": 3})
         
@@ -59,6 +63,18 @@ class ConversationalAgent:
         logging.info("\n Fetching Retriever.....")
         retriever = self.get_retriever()
         logging.info('\n ----------QA---------')
+
+        # question_template = """You are an Wikipedia and New york Times AI Assistant.Given the following conversation and a follow up question, rephrase the follow up question to be a standalone question.
+        # At the end of standalone question add this 'Answer the question in English language.' If you do not know the answer reply with 'I am sorry, I dont have enough information'.
+        # Chat History:
+        # {chat_history}
+        # Follow Up Input: {question}
+        # Standalone question:
+        # """
+
+        
+        # custom_standalone_question = PromptTemplate.from_template(question_template)
+
 
         memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True)
 
