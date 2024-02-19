@@ -25,11 +25,6 @@ app.add_middleware(
 
 chat_history = []
 
-class Validation(BaseModel):
-    """
-    Pydantic BaseModel for input validation.
-    """
-    query: str
 
 
 @app.get("/")
@@ -41,7 +36,7 @@ async def health_check():
 
 
 @app.post("/chat")
-async def completion(query: Validation, _empty):
+async def completion(query: str, isAPI: str):
     """
     Endpoint to process user queries and get responses.
     """
