@@ -6,25 +6,30 @@ WikiBuddy is a chatbot powered by a Large Language Model and based on Retrieval 
 
 # General Working Overview of WikiBuddy
 
-- **User Interaction**
-Initiation: The interaction begins when a user asks a question or makes a query to the chatbot.
-- **Query Enhancement**
-Wikibuddy's Request: Upon receiving the user's query, Wikibuddy requests the Language Model (LLM) to provide a better-phrased question. It includes the original question along with the chat history to contextualize the request.
-Better-Phrased Question: Wikibuddy receives the improved question from the LLM and responds to the user with the refined query.
-- **Document Retrieval**
-Passing to Retriever: Wikibuddy forwards the better-phrased question to the Retriever component, which has access to a repository of documents.
-Similarity Search: The Retriever conducts a similarity search within the document repository based on the provided query to identify relevant documents.
-- **Context Augmentation**
-Combining Query and Documents: Wikibuddy augments the better-phrased question with the retrieved documents, forming a contextualized input for the LLM. This enriched context provides additional information for generating a more accurate response.
-- **Response Generation**
-LLM Processing: The augmented input is passed to the LLM, which processes the information and generates a response based on the provided context.
-User Response: The generated answer is returned to the user, addressing their initial query.
-- **Follow-up Interaction**
-Continued Conversation: Users have the option to continue the conversation by asking follow-up questions, initiating another cycle of interaction.
-- **Monitoring and Analytics**
-  1. Telemetry Integration: Throughout the interaction, Langsmith monitors various aspects of the chatbot's performance, including response times, usage, traces
-  2. Analytics: Data collected during interactions are analyzed to gain insights into user behavior, query patterns, and overall chatbot effectiveness.
+#### User Interaction
+- **Initiation:** The interaction begins with the user asking a question or making a query to the chatbot.
 
+#### Query Enhancement
+- **Wikibuddy's Request:** Upon receiving the user's query, Wikibuddy requests the Language Model (LLM) to provide a better-phrased question. It includes the original question along with the chat history for context.
+- **Better-Phrased Question:** Wikibuddy receives the improved question from the LLM and responds to the user with the refined query.
+
+#### Document Retrieval
+- **Passing to Retriever:** Wikibuddy forwards the better-phrased question to the Retriever component, which has access to a repository of documents.
+- **Similarity Search:** The Retriever conducts a similarity search within the document repository based on the provided query to identify relevant documents.
+
+#### Context Augmentation
+- **Combining Query and Documents:** Wikibuddy augments the better-phrased question with the retrieved documents, forming a contextualized input for the LLM. This enriched context provides additional information for generating a more accurate response.
+
+#### Response Generation
+- **LLM Processing:** The augmented input is passed to the LLM, which processes the information and generates a response based on the provided context.
+- **User Response:** The generated answer is returned to the user, addressing their initial query.
+
+#### Follow-up Interaction
+- **Continued Conversation:** Users can continue the conversation by asking follow-up questions, initiating another cycle of interaction.
+
+#### Monitoring and Analytics
+1. **Telemetry Integration:** Throughout the interaction, Langsmith monitors various aspects of the chatbot's performance, including response times, usage, traces.
+2. **Analytics:** Data collected during interactions are analyzed to gain insights into user behavior, query patterns, and overall chatbot effectiveness.
 
 # Techstack
 ### Model
