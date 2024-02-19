@@ -4,6 +4,28 @@
 
 WikiBuddy is a chatbot powered by a Large Language Model and based on Retrieval Augmented Generation (RAG) techniques. It utilizes datasets from Wikipedia.org and Nytimes.com collected from the internet, integrating both retrieval and generation models. This approasch ensures that WikiBuddy delivers responses that are more accurate and relevant compared to traditional chatbots
 
+# General Working Overview of WikiBuddy
+
+- **User Interaction**
+Initiation: The interaction begins when a user asks a question or makes a query to the chatbot.
+- **Query Enhancement**
+Wikibuddy's Request: Upon receiving the user's query, Wikibuddy requests the Language Model (LLM) to provide a better-phrased question. It includes the original question along with the chat history to contextualize the request.
+Better-Phrased Question: Wikibuddy receives the improved question from the LLM and responds to the user with the refined query.
+- **Document Retrieval**
+Passing to Retriever: Wikibuddy forwards the better-phrased question to the Retriever component, which has access to a repository of documents.
+Similarity Search: The Retriever conducts a similarity search within the document repository based on the provided query to identify relevant documents.
+- **Context Augmentation**
+Combining Query and Documents: Wikibuddy augments the better-phrased question with the retrieved documents, forming a contextualized input for the LLM. This enriched context provides additional information for generating a more accurate response.
+- **Response Generation**
+LLM Processing: The augmented input is passed to the LLM, which processes the information and generates a response based on the provided context.
+User Response: The generated answer is returned to the user, addressing their initial query.
+- **Follow-up Interaction**
+Continued Conversation: Users have the option to continue the conversation by asking follow-up questions, initiating another cycle of interaction.
+- **Monitoring and Analytics**
+  1. Telemetry Integration: Throughout the interaction, Langsmith monitors various aspects of the chatbot's performance, including response times, usage, traces
+  2. Analytics: Data collected during interactions are analyzed to gain insights into user behavior, query patterns, and overall chatbot effectiveness.
+
+
 # Techstack
 ### Model
 - [TheBloke/Mistral-7B-Instruct-v0.2-GGUF (4bit)](https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.2-GGUF)
@@ -14,9 +36,9 @@ WikiBuddy is a chatbot powered by a Large Language Model and based on Retrieval 
 - [FastAPI](https://fastapi.tiangolo.com/)
 ### Vectorestore
 - [FAISS-CPU](https://faiss.ai/index.html)
-## UI
+### UI
 - [Gradio](https://www.gradio.app/)
-## Monitoring 
+### Monitoring 
 - [Langsmith](https://docs.smith.langchain.com/)
 
 # Running Locally 
@@ -43,15 +65,12 @@ This should on first run, downlaod the model and download locally too. From next
 
 You can test the inference at by making `POST` request at `http://127.0.0.1:8000/chat` 
 
-The template for json body is 
+Query params : 
 ```
-{
-  "query": "Who is Taylor Swift?"
-}
+query: "input question"
 
-Note: api also expects query paramater called _empty: "true" 
+isAPI: "true"
 ```
-
 ## User Interface 
 
 
@@ -87,4 +106,5 @@ export LANGCHAIN_API_KEY="<LANGSMITH_API_KEY>"
 export LANGCHAIN_PROJECT="<PROJECT NAME>"
 
 ```
+
 
