@@ -1,0 +1,14 @@
+python-dotenv
+langsmith
+langchain_openai
+langchain
+gradio
+uvicorn
+pydantic
+faiss-cpu
+fake-useragent
+asyncio
+llama-cpp-python
+sentence-transformers
+nest-asyncio
+beautifulsoup4

@@ -9,7 +9,7 @@ from langchain_community.vectorstores import FAISS
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from huggingface_hub import hf_hub_download
 from langchain_community.llms import LlamaCpp
-from langchain import PromptTemplate
+from langchain.prompts import PromptTemplate
 
 from langchain.memory import ConversationBufferMemory
 langchain.debug = True 

@@ -41,7 +41,7 @@ async def health_check():
 
 
 @app.post("/chat")
-async def completion(query: Validation, _empty:str):
+async def completion(query: Validation, _empty):
     """
     Endpoint to process user queries and get responses.
     """
@@ -56,17 +56,12 @@ async def completion(query: Validation, _empty:str):
     except Exception as e:
         logging.error(f"Error processing query: {query}, Error: {str(e)}")
         raise HTTPException(status_code=500, detail="Internal Server Error")
-def vote(data: gr.LikeData):
-    if data.liked:
-        print(data.value)
-    else:
-        print(data)
 
 io =  gr.ChatInterface(
      fn=completion,
      chatbot=gr.Chatbot(height=400),
      textbox=gr.Textbox(placeholder="Ask Away! ", container=False, scale=6),
-     title="wiki-chat-pedia",
+     title="WikiBuddy",
      description="Ask me any question",
      theme="soft",
      examples=["Who is David Beckham?", "Is Bitcoin Dead?", "What club does Christiano Ronaldo plays for?"],
