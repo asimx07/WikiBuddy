@@ -30,7 +30,7 @@ pip3 install --no-cache-dir --upgrade requirements.txt
 
 To create the embeddings and vector store first run `ingestion.py` script. This script creates embedding and stores in vectorestore. Once the indexes are created they are saved locally in `saved-index-faiss` folder. 
 
-###Note: This script MUST run before running `main.py` and takes quite lot of time. Alternatively, to speed up you can download the already created indexed from here and paste them in root directory. This way you do not need to run this script first. 
+#### Note: This script MUST run before running `main.py` and takes quite lot of time. Alternatively, to **speed up you can download the already created indexed from [here](https://drive.google.com/drive/folders/1aoiMgzU6E-HZMTplkJPFi71U91ygy7BS?usp=sharing)** and paste them in root directory. This way you do not need to run this script first. 
 
 ## Inference 
 Once the indexes are ready run 
@@ -44,10 +44,12 @@ This should on first run, downlaod the model and download locally too. From next
 You can test the inference at by making `POST` request at `http://127.0.0.1:8000/chat` 
 
 The template for json body is 
-```json
+```
 {
   "query": "Who is Taylor Swift?"
 }
+
+Note: api also expects query paramater called _empty: "true" 
 ```
 
 ## User Interface 
