@@ -50,7 +50,7 @@ WikiBuddy is a chatbot powered by a Large Language Model and based on Retrieval 
 
 This project is intended to run 4bit version of open source LLM Mistral 7b Instruct locally on CPU. To run this locally first clone the repo and install dependencies in `requirements.txt`
 ```
-pip3 install --no-cache-dir --upgrade requirements.txt 
+pip3 install --no-cache-dir --upgrade -r requirements.txt 
 ```
 
 ## Ingestion 
